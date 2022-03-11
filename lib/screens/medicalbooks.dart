@@ -1,20 +1,22 @@
+import 'package:ebook/apis/apis.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class FictionBooks extends StatefulWidget {
-  const FictionBooks({Key key}) : super(key: key);
+class MedicalBooks extends StatefulWidget {
+  const MedicalBooks({Key key}) : super(key: key);
 
   @override
-  State<FictionBooks> createState() => _FictionBooksState();
+  State<MedicalBooks> createState() => _MedicalBooksState();
 }
 
-class _FictionBooksState extends State<FictionBooks> {
+class _MedicalBooksState extends State<MedicalBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 22, 42, 59),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -25,7 +27,7 @@ class _FictionBooksState extends State<FictionBooks> {
           ),
         ],
         backgroundColor: Colors.blue,
-        title: Text('Fiction Books'),
+        title: Text('Medical Books'),
         leading: Icon(Icons.book),
       ),
       body: FutureBuilder(
@@ -36,7 +38,7 @@ class _FictionBooksState extends State<FictionBooks> {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else {
                 return ListView(
-                    children: snapshot.data.map((b) => BookTile(b)).toList());
+                    children: snapshot.data.map((b) => BookTile2(b)).toList());
               }
             } else {
               return Center(child: CircularProgressIndicator());
@@ -92,20 +94,115 @@ class BookTile extends StatelessWidget {
   }
 }
 
+class BookTile2 extends StatelessWidget {
+  final Book book;
+  BookTile2(this.book);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        child: Column(
+      children: [
+        SizedBox(
+          height: 0.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 5.0,
+            ),
+            Container(
+              height: 200,
+              width: 130,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(4.0)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4.0),
+                child: Image.network(
+                  book.thumbnailUrl,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 200.0,
+                width: 200.0,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        book.title,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.fade,
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text(
+                        book.author,
+                        style: TextStyle(color: Colors.grey, fontSize: 10.0),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text(
+                        "8.5/10",
+                        style: TextStyle(
+                          color: Colors.deepOrange,
+                          fontSize: 28.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      FlatButton(
+                        onPressed: () => _navigateToDetailsPage(book, context),
+                        color: Colors.deepOrange,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Details",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+          ],
+        ),
+      ],
+    ));
+  }
+}
+
 List<Book> _fetchBooks() {
   return List.generate(
       200, (i) => Book(title: 'Book $i', author: 'Author $i', desc: 'Desc $i'));
 }
 
 Future<List<Book>> _fetchPotterBooks() async {
-  const url =
-      // https://www.googleapis.com/books/v1/volumes?q={dartlang}
-      // http://openlibrary.org/search.json?q=Coding
-      // https://www.googleapis.com/books/v1/volumes?q={horror}
-      // https://www.googleapis.com/books/v1/volumes?q={religion}
-
-      // This is not in use
-      'https://www.googleapis.com/books/v1/volumes?q={fiction}';
+  const url = BooksApi.medicalBooksApiUrl;
   final res = await http.get(Uri.parse(url));
   if (res.statusCode == 200) {
     return _parseBookJson(res.body);
@@ -140,8 +237,7 @@ class Book {
     this.thumbnailUrl,
     @required this.desc,
   })  : assert(title != null),
-        assert(author != null),
-        assert(desc != null);
+        assert(author != null);
 }
 
 void _navigateToDetailsPage(Book book, BuildContext context) {
@@ -158,9 +254,11 @@ class BookDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(book.title)),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: BookDetails(book),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: BookDetails(book),
+        ),
       ),
     );
   }

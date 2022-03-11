@@ -21,6 +21,7 @@ class FaqContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -50,6 +51,7 @@ class FaqContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -82,6 +84,7 @@ class FaqContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -104,6 +107,7 @@ class FaqContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -129,8 +133,3 @@ class FaqContainerWidget {
     );
   }
 }
-
-
-
-
-

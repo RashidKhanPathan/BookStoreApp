@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 class FreeShippingContainerWidget {
   static Widget freeShippingContainer() {
     return Container(
-      color: Color.fromARGB(255, 28, 60, 87),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 20),
-          Text("FAQ",
+          Text("Free Shipping",
               style: TextStyle(
                   fontSize: 15,
                   color: Colors.grey,
@@ -37,7 +36,7 @@ class FreeShippingContainerWidget {
                             style: TextStyle(fontSize: 15, color: Colors.blue))
                       ],
                     ),
-                    Text("FAQ",
+                    Text("20 Million Books",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
@@ -66,7 +65,7 @@ class FreeShippingContainerWidget {
                             style: TextStyle(fontSize: 15, color: Colors.blue))
                       ],
                     ),
-                    Text("FAQ",
+                    Text("10 Million Books",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,

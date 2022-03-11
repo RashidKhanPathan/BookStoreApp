@@ -1,22 +1,18 @@
 import 'package:ebook/apis/apis.dart';
-import 'package:ebook/screens/BookListScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
-
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class CodingBooks extends StatefulWidget {
-  const CodingBooks({Key key}) : super(key: key);
+class Hacking extends StatefulWidget {
+  const Hacking({Key key}) : super(key: key);
 
   @override
-  State<CodingBooks> createState() => _CodingBooksState();
+  State<Hacking> createState() => _HackingState();
 }
 
-class _CodingBooksState extends State<CodingBooks> {
+class _HackingState extends State<Hacking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +27,7 @@ class _CodingBooksState extends State<CodingBooks> {
           ),
         ],
         backgroundColor: Colors.blue,
-        title: Text('Coding Books'),
+        title: Text('Hacking Books'),
         leading: Icon(Icons.book),
       ),
       body: FutureBuilder(
@@ -206,7 +202,7 @@ List<Book> _fetchBooks() {
 }
 
 Future<List<Book>> _fetchPotterBooks() async {
-  const url = BooksApi.codingBooksApiUrl;
+  const url = BooksApi.hackingBooksApiUrl;
   final res = await http.get(Uri.parse(url));
   if (res.statusCode == 200) {
     return _parseBookJson(res.body);

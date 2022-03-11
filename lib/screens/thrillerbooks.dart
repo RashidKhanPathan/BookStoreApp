@@ -1,22 +1,19 @@
 import 'package:ebook/apis/apis.dart';
-import 'package:ebook/screens/BookListScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
-
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class CodingBooks extends StatefulWidget {
-  const CodingBooks({Key key}) : super(key: key);
+class ThrillerBooks extends StatefulWidget {
+  const ThrillerBooks({Key key}) : super(key: key);
 
   @override
-  State<CodingBooks> createState() => _CodingBooksState();
+  State<ThrillerBooks> createState() => _ThrillerBooksState();
 }
 
-class _CodingBooksState extends State<CodingBooks> {
+class _ThrillerBooksState extends State<ThrillerBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +28,7 @@ class _CodingBooksState extends State<CodingBooks> {
           ),
         ],
         backgroundColor: Colors.blue,
-        title: Text('Coding Books'),
+        title: Text('Thriller Books'),
         leading: Icon(Icons.book),
       ),
       body: FutureBuilder(
@@ -52,52 +49,6 @@ class _CodingBooksState extends State<CodingBooks> {
   }
 }
 
-class BooksList extends StatelessWidget {
-  const BooksList({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        child: Row(
-          children: [
-            Container(
-              height: 200,
-              width: 150,
-              color: Colors.blue,
-            ),
-            Container(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BookTile extends StatelessWidget {
-  final Book book;
-  BookTile(this.book);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-      children: [
-        ListTile(
-          title: Text(book.title),
-          subtitle: Text(book.author),
-          onTap: () => _navigateToDetailsPage(book, context),
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(
-              book.thumbnailUrl,
-            ),
-          ),
-        ),
-      ],
-    ));
-  }
-}
-
 class BookTile2 extends StatelessWidget {
   final Book book;
   BookTile2(this.book);
@@ -108,7 +59,7 @@ class BookTile2 extends StatelessWidget {
         child: Column(
       children: [
         SizedBox(
-          height: 0.0,
+          height: 5.0,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -119,7 +70,6 @@ class BookTile2 extends StatelessWidget {
             ),
             Container(
               height: 200,
-              width: 130,
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4.0)),
@@ -200,13 +150,37 @@ class BookTile2 extends StatelessWidget {
   }
 }
 
+class BookTile extends StatelessWidget {
+  final Book book;
+  BookTile(this.book);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        child: Column(
+      children: [
+        ListTile(
+          title: Text(book.title),
+          subtitle: Text(book.author),
+          onTap: () => _navigateToDetailsPage(book, context),
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(
+              book.thumbnailUrl,
+            ),
+          ),
+        ),
+      ],
+    ));
+  }
+}
+
 List<Book> _fetchBooks() {
   return List.generate(
-      100, (i) => Book(title: 'Book $i', author: 'Author $i', desc: 'Desc $i'));
+      200, (i) => Book(title: 'Book $i', author: 'Author $i', desc: 'Desc $i'));
 }
 
 Future<List<Book>> _fetchPotterBooks() async {
-  const url = BooksApi.codingBooksApiUrl;
+  const url = BooksApi.thrillerBooksApiUrl;
   final res = await http.get(Uri.parse(url));
   if (res.statusCode == 200) {
     return _parseBookJson(res.body);
@@ -257,7 +231,13 @@ class BookDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(book.title)),
+      backgroundColor: Color.fromARGB(255, 22, 42, 59),
+      appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text(
+            book.title,
+            style: TextStyle(color: Colors.white),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -280,13 +260,30 @@ class BookDetails extends StatelessWidget {
         children: [
           Image.network(book.thumbnailUrl),
           SizedBox(height: 10.0),
-          Text(book.title),
+          Text(
+            book.title,
+            style: TextStyle(color: Colors.white),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
-            child: Text(book.author,
-                style: TextStyle(fontWeight: FontWeight.w700)),
+            child: Text(
+              book.author,
+              style:
+                  TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+            ),
           ),
-          Text(book.desc.toString())
+          Text(
+            book.desc.toString(),
+            style: TextStyle(color: Colors.white),
+          ),
+          MaterialButton(
+            color: Color.fromARGB(255, 209, 191, 33),
+            onPressed: () {},
+            child: Text(
+              "Add to Cart",
+              style: TextStyle(color: Colors.white),
+            ),
+          )
         ],
       ),
     );

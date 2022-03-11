@@ -18,5 +18,3 @@ samples, guidance on mobile development, and a full API reference.
 ## Screenshots-: 
 
 <div class="row">
-<img src="https://github.com/er-akashgarg/ebook/blob/master/screenshots/scr1.png" width="198" height="350" />
-<img src="https://github.com/er-akashgarg/ebook/blob/master/screenshots/scr2.png" width="198" height="350" />

@@ -7,7 +7,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("List of Bookstores"),
       ),
     );
   }
@@ -18,7 +18,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("Reading Lists"),
       ),
     );
   }
@@ -29,7 +29,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("Discover More"),
       ),
     );
   }
@@ -40,7 +40,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("Bestsellers"),
       ),
     );
   }
@@ -51,7 +51,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("My Wishlists"),
       ),
     );
   }
@@ -62,7 +62,7 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("Coming Soon Books"),
       ),
     );
   }
@@ -73,7 +73,18 @@ class ButtonWidget {
       child: MaterialButton(
         color: Colors.yellow,
         onPressed: () {},
-        child: Text("List of Books"),
+        child: Text("Book Categories"),
+      ),
+    );
+  }
+
+  static Widget listbookstoresButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+      child: MaterialButton(
+        color: Colors.yellow,
+        onPressed: () {},
+        child: Text("List of Bookstores"),
       ),
     );
   }

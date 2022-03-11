@@ -12,6 +12,7 @@ class ShippingInfoContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -41,6 +42,7 @@ class ShippingInfoContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
@@ -69,12 +71,13 @@ class ShippingInfoContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Book Depository",
+                    Text("Abe Books",
                         style: TextStyle(fontSize: 15, color: Colors.blue)),
                     Text("Free Shipping",
                         style: TextStyle(
@@ -91,12 +94,13 @@ class ShippingInfoContainerWidget {
                 height: 75,
                 width: 170,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Book Depository",
+                    Text("Better World Books",
                         style: TextStyle(fontSize: 15, color: Colors.blue)),
                     Text("Free Shipping",
                         style: TextStyle(

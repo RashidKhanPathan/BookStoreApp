@@ -1,22 +1,18 @@
 import 'package:ebook/apis/apis.dart';
-import 'package:ebook/screens/BookListScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
-
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class CodingBooks extends StatefulWidget {
-  const CodingBooks({Key key}) : super(key: key);
+class FictionBooks extends StatefulWidget {
+  const FictionBooks({Key key}) : super(key: key);
 
   @override
-  State<CodingBooks> createState() => _CodingBooksState();
+  State<FictionBooks> createState() => _FictionBooksState();
 }
 
-class _CodingBooksState extends State<CodingBooks> {
+class _FictionBooksState extends State<FictionBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +27,7 @@ class _CodingBooksState extends State<CodingBooks> {
           ),
         ],
         backgroundColor: Colors.blue,
-        title: Text('Coding Books'),
+        title: Text('Fiction Books'),
         leading: Icon(Icons.book),
       ),
       body: FutureBuilder(
@@ -202,11 +198,18 @@ class BookTile2 extends StatelessWidget {
 
 List<Book> _fetchBooks() {
   return List.generate(
-      100, (i) => Book(title: 'Book $i', author: 'Author $i', desc: 'Desc $i'));
+      200, (i) => Book(title: 'Book $i', author: 'Author $i', desc: 'Desc $i'));
 }
 
 Future<List<Book>> _fetchPotterBooks() async {
-  const url = BooksApi.codingBooksApiUrl;
+  const url =
+      // https://www.googleapis.com/books/v1/volumes?q={dartlang}
+      // http://openlibrary.org/search.json?q=Coding
+      // https://www.googleapis.com/books/v1/volumes?q={horror}
+      // https://www.googleapis.com/books/v1/volumes?q={religion}
+
+      // This is not in use
+      BooksApi.fictionBooksApiUrl;
   final res = await http.get(Uri.parse(url));
   if (res.statusCode == 200) {
     return _parseBookJson(res.body);
@@ -241,7 +244,8 @@ class Book {
     this.thumbnailUrl,
     @required this.desc,
   })  : assert(title != null),
-        assert(author != null);
+        assert(author != null),
+        assert(desc != null);
 }
 
 void _navigateToDetailsPage(Book book, BuildContext context) {
@@ -258,11 +262,9 @@ class BookDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(book.title)),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: BookDetails(book),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: BookDetails(book),
       ),
     );
   }

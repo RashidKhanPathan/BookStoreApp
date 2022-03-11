@@ -1,5 +1,9 @@
-import 'package:ebook/New%20UI/booksapi.dart';
-import 'package:ebook/UI/HomeScreen.dart';
+import 'package:ebook/screens/HomeScreen.dart';
+import 'package:ebook/screens/bookcategoriesbottombar.dart';
+import 'package:ebook/screens/booksapi.dart';
+import 'package:ebook/screens/searchScreen.dart';
+import 'package:ebook/screens/wishlistscreen.dart';
+import 'package:ebook/widgets/searchContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,10 +18,10 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     HomeScreen(),
-    BookFinderPage(),
+    BookCategories(),
     const Page3(),
-    const Page4(),
-    HomeScreen(),
+    BookCategories(),
+    WishlistsScreen(),
   ];
 
   @override
@@ -436,7 +440,7 @@ class Page1 extends StatelessWidget {
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BookFinderPage();
+    return BookCategories();
   }
 }
 
@@ -445,19 +449,7 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 26, 26, 26),
-      child: Center(
-        child: Text(
-          "Page Number 3",
-          style: TextStyle(
-            color: Color.fromARGB(255, 36, 37, 36),
-            fontSize: 45,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
+    return SearchScreen();
   }
 }
 
@@ -466,19 +458,7 @@ class Page4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 26, 26, 26),
-      child: Center(
-        child: Text(
-          "Page Number 4",
-          style: TextStyle(
-            color: Color.fromARGB(255, 22, 22, 22),
-            fontSize: 45,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
+    return BookCategories();
   }
 }
 
@@ -487,6 +467,6 @@ class Page5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return WishlistsScreen();
   }
 }

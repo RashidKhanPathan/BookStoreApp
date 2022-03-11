@@ -1,22 +1,18 @@
 import 'package:ebook/apis/apis.dart';
-import 'package:ebook/screens/BookListScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
-
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class CodingBooks extends StatefulWidget {
-  const CodingBooks({Key key}) : super(key: key);
+class ComedyBooks extends StatefulWidget {
+  const ComedyBooks({Key key}) : super(key: key);
 
   @override
-  State<CodingBooks> createState() => _CodingBooksState();
+  State<ComedyBooks> createState() => _HorrorBooksState();
 }
 
-class _CodingBooksState extends State<CodingBooks> {
+class _HorrorBooksState extends State<ComedyBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +27,7 @@ class _CodingBooksState extends State<CodingBooks> {
           ),
         ],
         backgroundColor: Colors.blue,
-        title: Text('Coding Books'),
+        title: Text('Comedy Books'),
         leading: Icon(Icons.book),
       ),
       body: FutureBuilder(
@@ -206,7 +202,11 @@ List<Book> _fetchBooks() {
 }
 
 Future<List<Book>> _fetchPotterBooks() async {
-  const url = BooksApi.codingBooksApiUrl;
+  const url =
+      // https://www.googleapis.com/books/v1/volumes?q={dartlang}
+      // https://www.googleapis.com/books/v1/volumes?q={medical}
+      // 'https://www.googleapis.com/books/v1/volumes?q={comedy}
+      BooksApi.comedyBooksApiUrl;
   final res = await http.get(Uri.parse(url));
   if (res.statusCode == 200) {
     return _parseBookJson(res.body);

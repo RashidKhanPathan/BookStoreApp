@@ -1,11 +1,9 @@
 import 'dart:async';
 
+import 'package:ebook/screens/HomeScreen.dart';
 import 'package:ebook/screens/codingbooks.dart';
 import 'package:ebook/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'UI/HomeScreen.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -49,20 +47,33 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _body() {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 30, 54, 73),
       body: Center(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('images/book.png'),
+              Padding(
+                padding: const EdgeInsets.all(110),
+                child: Image.asset('images/splash.png'),
+              ),
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Text(
                   "Book Store",
                   style: TextStyle(
-                      fontSize: 45.0,
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text(
+                  "Welcome to Book Store",
+                  style: TextStyle(
+                      fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),

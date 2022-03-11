@@ -71,6 +71,17 @@ flutter:
     - images/horror.jpg
     - images/comedy.jpg
     - images/medical.jpg
+    - images/thriller.jpg
+    - images/splash.png
+    - images/hacking.jpg
+    - images/food.jpg
+    - images/art.jpg
+    - images/popular/popular.jpg
+    - images/popular/popular (1).png
+    - images/popular/popular (2).jpg
+    - images/popular/popular (3).jpg
+    - images/popular/popular (4).jpg
+    - images/popular/popular (5).jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
